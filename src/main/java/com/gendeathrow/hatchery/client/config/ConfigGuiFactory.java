@@ -15,6 +15,18 @@ public class ConfigGuiFactory implements IModGuiFactory
 		
 	}
 
+	//TODO: this is just so we can get on the way to compiling...
+	@Override
+	public GuiScreen createConfigGui(GuiScreen var1){
+		return var1;
+	}
+
+	//TODO: Temporary implementation, just so we can compile.
+	@Override
+	public boolean hasConfigGui(){
+		return false;
+	}
+
 	@Override
 	public Class<? extends GuiScreen> mainConfigGuiClass() 
 	{
