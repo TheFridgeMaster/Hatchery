@@ -37,78 +37,65 @@ public class ModRecipes
 	
 	public static void RegisterRecipes()
 	{
-	    IRecipe animalNetRecipe = new ShapedOreRecipe(new ItemStack(ModItems.animalNet), new Object[] {
-            "xSS",
-            "SAA",
-            "xxA",
-            'S', "stickWood",   // can use ordinary items, blocks, itemstacks in ShapedOreRecipe
-            'A', "string",  // look in OreDictionary for vanilla definitions
-	    });
+	    IRecipe animalNetRecipe = new ShapedOreRecipe(new ItemStack(ModItems.animalNet), "xSS",
+				"SAA",
+				"xxA",
+				'S', "stickWood",   // can use ordinary items, blocks, itemstacks in ShapedOreRecipe
+				'A', "string",  // look in OreDictionary for vanilla definitions
+		);
 	    GameRegistry.addRecipe(animalNetRecipe);
 	    
-	    IRecipe chickenMachineRecipe = new ShapedOreRecipe(new ItemStack(ModItems.chickenmachine), new Object[] {
-	            "xWx",
-	            "WEW",
-	            "ICI",
-	            'W', "plankWood",   // can use ordinary items, blocks, itemstacks in ShapedOreRecipe
-	            'E', "egg",
-	            'I', Blocks.IRON_BLOCK,
-	            'C', ModItems.circuitBoard, // look in OreDictionary for vanilla definitions
-		    });
+	    IRecipe chickenMachineRecipe = new ShapedOreRecipe(new ItemStack(ModItems.chickenmachine), "xWx",
+				"WEW",
+				"ICI",
+				'W', "plankWood",   // can use ordinary items, blocks, itemstacks in ShapedOreRecipe
+				'E', "egg",
+				'I', Blocks.IRON_BLOCK,
+				'C', ModItems.circuitBoard, // look in OreDictionary for vanilla definitions
+		);
 		    GameRegistry.addRecipe(chickenMachineRecipe);
 	    
-	    IRecipe penRecipe = new ShapedOreRecipe(new ItemStack(ModBlocks.pen), new Object[] {	    
-	    	"WxW", 
-	    	"WNW", 
-	    	"WWW",
-	    	'W', "plankWood", 
-	    	'N', ModBlocks.nest
-	    });
+	    IRecipe penRecipe = new ShapedOreRecipe(new ItemStack(ModBlocks.pen), "WxW",
+				"WNW",
+				"WWW",
+				'W', "plankWood",
+				'N', ModBlocks.nest);
 	    
 	    GameRegistry.addRecipe(penRecipe);
 	    
-	    IRecipe fertDirtRecipe = new ShapedOreRecipe(new ItemStack(ModBlocks.fertlizedDirt), new Object[] {
-	    	"PPP", 
-	    	"PDP", 
-	    	"PPP",
-	    	'P', "manure",
-	    	'D', "dirt"
-		});
+	    IRecipe fertDirtRecipe = new ShapedOreRecipe(new ItemStack(ModBlocks.fertlizedDirt), "PPP",
+				"PDP",
+				"PPP",
+				'P', "manure",
+				'D', "dirt");
 	    GameRegistry.addRecipe(fertDirtRecipe);
 	    
-	    IRecipe feederRecipe = new ShapedOreRecipe(new ItemStack(ModBlocks.feeder), new Object[] {
-	    	".I.",
-	    	"SBS",
-	    	"SSS",
-	    	'I', "ingotIron",
-	    	'B', "blockIron",
-	    	'S', "slabWood"
-		});
+	    IRecipe feederRecipe = new ShapedOreRecipe(new ItemStack(ModBlocks.feeder), ".I.",
+				"SBS",
+				"SSS",
+				'I', "ingotIron",
+				'B', "blockIron",
+				'S', "slabWood");
 	    GameRegistry.addRecipe(feederRecipe);
 	    
 	    
-	    IRecipe NurseryRecipe = new ShapedOreRecipe(new ItemStack(ModBlocks.nuseryBlock), new Object[] {
-	    	"III", 
-	    	"IPI", 
-	    	"SSS",
-	    	'I', "ingotIron",
-	    	'P', Blocks.PISTON,
-	    	'S', "slabWood"
-		});
+	    IRecipe NurseryRecipe = new ShapedOreRecipe(new ItemStack(ModBlocks.nuseryBlock), "III",
+				"IPI",
+				"SSS",
+				'I', "ingotIron",
+				'P', Blocks.PISTON,
+				'S', "slabWood");
 	    GameRegistry.addRecipe(NurseryRecipe);
 	    
 		//GameRegistry.addRecipe(new ItemStack(ModBlocks.nest), "xxx", "AxA", "xAx",'A', Blocks.HAY_BLOCK);
 
-	    IRecipe sprayerRecipe = new ShapedOreRecipe(new ItemStack(ModItems.sprayer), new Object[] {
-	    	"DD.", 
-	    	".IB", 
-	    	"IGI",
-	    	'I', "ingotIron",
-	    	'G', ModFluids.getFertilizerBucket(),
-	    	'D', "ingotIron",
-	    	'B',  new ItemStack(Blocks.STONE_BUTTON)
-	    	
-		});
+	    IRecipe sprayerRecipe = new ShapedOreRecipe(new ItemStack(ModItems.sprayer), "DD.",
+				".IB",
+				"IGI",
+				'I', "ingotIron",
+				'G', ModFluids.getFertilizerBucket(),
+				'D', "ingotIron",
+				'B', new ItemStack(Blocks.STONE_BUTTON));
 	    GameRegistry.addRecipe(sprayerRecipe);
 	    
 	    List<ItemStack> bucketFertIngre = new ArrayList<ItemStack>(); 
@@ -117,7 +104,7 @@ public class ModRecipes
 
 	    	IRecipe bucketFert = new ShapelessRecipes(ModFluids.getFertilizerBucket(), bucketFertIngre)
 	    {
-	    	@Override
+
 	        public ItemStack[] getRemainingItems(InventoryCrafting inv)
 	        {
 				return new ItemStack[inv.getSizeInventory()];
@@ -344,8 +331,7 @@ public class ModRecipes
 			
 	        return this.sprayerOut;
 	    }
-		
-	    @Nullable
+
 	    public ItemStack getCraftingResult(InventoryCrafting inv)
 	    {
 	    	ItemStack out = this.sprayerOut.copy();
@@ -368,7 +354,6 @@ public class ModRecipes
 	    }
 
 
-		@Override
 	    public ItemStack[] getRemainingItems(InventoryCrafting inv)
 	    {
 	        ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];

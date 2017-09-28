@@ -61,11 +61,9 @@ public class Hatchery {
     static int startEntityId = 1;
 
     public static CreativeTabs hatcheryTabs = new CreativeTabs(MODID) {
-        @Override
         public Item getTabIconItem() {
             return ModItems.hatcheryEgg;
         }
-
     };
 
     static {

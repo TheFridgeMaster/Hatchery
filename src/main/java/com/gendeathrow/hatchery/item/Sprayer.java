@@ -61,7 +61,6 @@ public class Sprayer extends Item
         return ((double)stack.getMaxDamage() - (double)getAmount(stack)) / stack.getMaxDamage();
     }
     
-	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
 
