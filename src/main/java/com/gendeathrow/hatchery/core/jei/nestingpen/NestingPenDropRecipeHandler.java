@@ -7,8 +7,7 @@ public class NestingPenDropRecipeHandler implements IRecipeHandler<NestingPenDro
 {
 
 
-	@Override
-	public String getRecipeCategoryUid() 
+	public String getRecipeCategoryUid()
 	{
 		return  NestingPenCategory.UID;
 	}

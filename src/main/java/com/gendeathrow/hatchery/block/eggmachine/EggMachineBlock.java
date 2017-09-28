@@ -76,7 +76,6 @@ public class EggMachineBlock extends BlockHorizontal implements ITileEntityProvi
         return new ItemStack(ModBlocks.chickenMachine);
     }
     
-    @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
     {
         if (state.getValue(PART) == EggMachineBlock.EnumPartType.BASE)
@@ -124,7 +123,6 @@ public class EggMachineBlock extends BlockHorizontal implements ITileEntityProvi
         }
     }
 
-	@Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)

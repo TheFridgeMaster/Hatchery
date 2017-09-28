@@ -30,4 +30,9 @@ public class ISidedInventoryStorage extends InventoryStorage implements ISidedIn
 		return true;
 	}
 
+	//TODO: I am just for compilation - need logic
+	public boolean isEmpty(){
+		return true;
+	}
+
 }

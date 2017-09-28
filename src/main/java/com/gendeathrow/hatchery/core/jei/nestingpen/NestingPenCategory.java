@@ -38,10 +38,17 @@ public class NestingPenCategory extends BlankRecipeCategory<NestingPenDropRecipe
         icon = guiHelper.createDrawable(location, 91, 17, 16, 16);	
     }
     
-	@Override
+//	@Override
 	public void drawAnimations(Minecraft arg0) 
 	{
 
+	}
+
+
+	//TODO: this is a placeholder for compilation.
+	@Override
+	public String getModName(){
+    	return "hello world!";
 	}
 
 	@Override

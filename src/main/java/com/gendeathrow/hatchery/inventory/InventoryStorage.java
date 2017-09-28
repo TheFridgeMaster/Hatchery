@@ -14,6 +14,8 @@ import net.minecraft.util.text.ITextComponent;
 public class InventoryStorage  implements IInventory
 {
 
+
+
 	public ItemStack[] inventory;
 	public TileEntity inventoryTile;
 	private String ID = "Items";
@@ -39,7 +41,6 @@ public class InventoryStorage  implements IInventory
 		return inventory.length;
 	}
 
-    @Nullable
     public ItemStack getStackInSlot(int index)
     {
         return index >= 0 && index < this.inventory.length ? this.inventory[index] : null;
@@ -81,7 +82,6 @@ public class InventoryStorage  implements IInventory
 		return 64;
 	}
 
-	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		return true;
 	}
@@ -219,5 +219,11 @@ public class InventoryStorage  implements IInventory
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		return false;
+	}
+
+	//TODO: This is just so it will compile for the time being
+	@Override
+	public boolean isUsableByPlayer(EntityPlayer var1){
+		return true;
 	}
 }

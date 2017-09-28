@@ -39,115 +39,103 @@ import com.gendeathrow.hatchery.network.HatcheryPacket;
 import com.gendeathrow.hatchery.network.HatcheryWindowPacket;
 
 
+@Mod(modid = Hatchery.MODID, name = Hatchery.NAME, version = Hatchery.VERSION, dependencies = Hatchery.dependencies, guiFactory = "com.gendeathrow.hatchery.client.config.ConfigGuiFactory")
+public class Hatchery {
 
-@Mod(modid = Hatchery.MODID, name=Hatchery.NAME, version = Hatchery.VERSION, dependencies=Hatchery.dependencies, guiFactory = "com.gendeathrow.hatchery.client.config.ConfigGuiFactory")
-public class Hatchery 
-{
+    public static final String MODID = "hatchery";
+    public static final String VERSION = "0.3.19";
+    public static final String NAME = "Hatchery";
+    private static final String PROXYLOC = "com.gendeathrow.hatchery.core.proxies";
+    public static final String CHANNELNAME = "genhatchery";
+    public static final String dependencies = "after:chickens@[4.1,)";
 
-		public static final String MODID = "hatchery";
-	    public static final String VERSION = "0.3.19";
-	    public static final String NAME = "Hatchery";
-	    private static final String PROXYLOC = "com.gendeathrow.hatchery.core.proxies";
-	    public static final String CHANNELNAME = "genhatchery";
-	    public static final String dependencies =  "after:chickens@[4.1,)";
-		   
-	    @Instance(MODID)
-		public static Hatchery INSTANCE;
-	    
-		@SidedProxy(clientSide = PROXYLOC + ".ClientProxy", serverSide = PROXYLOC + ".CommonProxy")
-		public static CommonProxy PROXY;
-		public static SimpleNetworkWrapper network;
-		public static FMLEventChannel channel;
-	    public static org.apache.logging.log4j.Logger logger;
-		
-	    static int startEntityId = 1;
-		
-	    public static CreativeTabs hatcheryTabs = new CreativeTabs(MODID)
-	    {
-	        @Override public Item getTabIconItem() 
-	        {
-	            return ModItems.hatcheryEgg;
-	        }
-	 
-	    };
-	    
-	    static{
-	    	FluidRegistry.enableUniversalBucket();
-	    }
-	    
-	    
-	    @EventHandler
-	    public void preInit(FMLPreInitializationEvent event)
-	    {
-	    	logger = event.getModLog();
-			ConfigHandler.INSTANCE.loadConfig(event);
-			
-	    	CapabilityAnimalStatsHandler.register();
+    @Instance(MODID)
+    public static Hatchery INSTANCE;
 
-	    	Hatchery.network = NetworkRegistry.INSTANCE.newSimpleChannel(Hatchery.CHANNELNAME);
-	    	network.registerMessage(HatcheryPacket.ServerHandler.class, HatcheryPacket.class, 0, Side.SERVER);
-	    	network.registerMessage(HatcheryPacket.ClientHandler.class, HatcheryPacket.class, 1, Side.CLIENT);
-	    	
-	    	network.registerMessage(HatcheryWindowPacket.ClientHandler.class, HatcheryWindowPacket.class, 2, Side.CLIENT);
-	    	NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, PROXY);
-	    	
-			EntityRegistry.registerModEntity(EntityRooster.class, "Rooster", 1, this, 120, 1, true);
-			registerEntityEgg(EntityRooster.class, 0x592C00, 0xC10000);
-			PROXY.registerRenderers();
-			
-			for (Biome allBiomes : ForgeRegistries.BIOMES.getValues())
-				if(!BiomeDictionary.isBiomeOfType(allBiomes, Type.WASTELAND)  && !BiomeDictionary.isBiomeOfType(allBiomes, Type.COLD) && !BiomeDictionary.isBiomeOfType(allBiomes, Type.NETHER)  && !BiomeDictionary.isBiomeOfType(allBiomes, Type.END)  && !BiomeDictionary.isBiomeOfType(allBiomes, Type.WATER) && !BiomeDictionary.isBiomeOfType(allBiomes, Type.SWAMP))
-					EntityRegistry.addSpawn(EntityRooster.class, Settings.ROOSTER_SPAWN_PROBABILITY, Settings.ROOSTER_MIN_SPAWN_SIZE, Settings.ROOSTER_MAX_SPAWN_SIZE, EnumCreatureType.CREATURE, allBiomes);
-			
-	    	PROXY.preInit(event);
-	    	
-	    }
-	    
-		public static int getUniqueEntityId() 
-		{
-			do
-				startEntityId++;
-			while(EntityList.getClassFromID(startEntityId)!= null);
-			return startEntityId;
-		}
-		
-		public static void registerEntityEgg(Class <? extends Entity> entity, int baseColor, int spotColor) 
-		{
-			int id = getUniqueEntityId();
-			EntityList.addMapping(entity, "Rooster", id);
-			EntityList.ENTITY_EGGS.put("Rooster", new EntityList.EntityEggInfo("Rooster", baseColor, spotColor));
-		}
-		
-	    @EventHandler
-	    public void init(FMLInitializationEvent event) throws IOException
-	    {
-	    	PROXY.init(event);
-	    	
-	    	ConfigHandler.loadConfig();
-	    	
-	    	// waila integration
-	        FMLInterModComms.sendMessage("Waila", "register", "com.gendeathrow.hatchery.core.waila.HatcheryTileProvider.load");
-	        
-	        if (Loader.isModLoaded("theoneprobe")) 
-	        {
-	        	TheOneProbeSupport.register();
-	        }
-	    	
-	    	PROXY.registerEventHandlers();
-	    	PROXY.initRenderers();
-	     }
-	    
-	    @EventHandler
-	    public void postInit(FMLPostInitializationEvent event)
-	    {
-	    	PROXY.postInit(event);
-	    	
-	    	//RegisterEggsUtil.register();
-	    }
-	    
-		@EventHandler
-		public void serverStart(FMLServerStartingEvent event)
-		{
+    @SidedProxy(clientSide = PROXYLOC + ".ClientProxy", serverSide = PROXYLOC + ".CommonProxy")
+    public static CommonProxy PROXY;
+    public static SimpleNetworkWrapper network;
+    public static FMLEventChannel channel;
+    public static org.apache.logging.log4j.Logger logger;
 
-		}
-	}
+    static int startEntityId = 1;
+
+    public static CreativeTabs hatcheryTabs = new CreativeTabs(MODID) {
+        public Item getTabIconItem() {
+            return ModItems.hatcheryEgg;
+        }
+    };
+
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
+
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        logger = event.getModLog();
+        ConfigHandler.INSTANCE.loadConfig(event);
+
+        CapabilityAnimalStatsHandler.register();
+
+        Hatchery.network = NetworkRegistry.INSTANCE.newSimpleChannel(Hatchery.CHANNELNAME);
+        network.registerMessage(HatcheryPacket.ServerHandler.class, HatcheryPacket.class, 0, Side.SERVER);
+        network.registerMessage(HatcheryPacket.ClientHandler.class, HatcheryPacket.class, 1, Side.CLIENT);
+
+        network.registerMessage(HatcheryWindowPacket.ClientHandler.class, HatcheryWindowPacket.class, 2, Side.CLIENT);
+        NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, PROXY);
+
+        EntityRegistry.registerModEntity(EntityRooster.class, "Rooster", 1, this, 120, 1, true);
+        registerEntityEgg(EntityRooster.class, 0x592C00, 0xC10000);
+        PROXY.registerRenderers();
+
+        for (Biome allBiomes : ForgeRegistries.BIOMES.getValues())
+            if (!BiomeDictionary.isBiomeOfType(allBiomes, Type.WASTELAND) && !BiomeDictionary.isBiomeOfType(allBiomes, Type.COLD) && !BiomeDictionary.isBiomeOfType(allBiomes, Type.NETHER) && !BiomeDictionary.isBiomeOfType(allBiomes, Type.END) && !BiomeDictionary.isBiomeOfType(allBiomes, Type.WATER) && !BiomeDictionary.isBiomeOfType(allBiomes, Type.SWAMP))
+                EntityRegistry.addSpawn(EntityRooster.class, Settings.ROOSTER_SPAWN_PROBABILITY, Settings.ROOSTER_MIN_SPAWN_SIZE, Settings.ROOSTER_MAX_SPAWN_SIZE, EnumCreatureType.CREATURE, allBiomes);
+
+        PROXY.preInit(event);
+
+    }
+
+    public static int getUniqueEntityId() {
+        do
+            startEntityId++;
+        while (EntityList.getClassFromID(startEntityId) != null);
+        return startEntityId;
+    }
+
+    public static void registerEntityEgg(Class<? extends Entity> entity, int baseColor, int spotColor) {
+        int id = getUniqueEntityId();
+        EntityList.addMapping(entity, "Rooster", id);
+        EntityList.ENTITY_EGGS.put("Rooster", new EntityList.EntityEggInfo("Rooster", baseColor, spotColor));
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) throws IOException {
+        PROXY.init(event);
+
+        ConfigHandler.loadConfig();
+
+        // waila integration
+        FMLInterModComms.sendMessage("Waila", "register", "com.gendeathrow.hatchery.core.waila.HatcheryTileProvider.load");
+
+        if (Loader.isModLoaded("theoneprobe")) {
+            TheOneProbeSupport.register();
+        }
+
+        PROXY.registerEventHandlers();
+        PROXY.initRenderers();
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        PROXY.postInit(event);
+
+        //RegisterEggsUtil.register();
+    }
+
+    @EventHandler
+    public void serverStart(FMLServerStartingEvent event) {
+
+    }
+}

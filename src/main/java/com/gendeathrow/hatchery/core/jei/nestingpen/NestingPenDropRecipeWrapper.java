@@ -28,8 +28,7 @@ public class NestingPenDropRecipeWrapper extends BlankRecipeWrapper
 		output = dropped;
 	}
 	
-	@Override
-	public void drawAnimations(Minecraft arg0, int arg1, int arg2) 
+	public void drawAnimations(Minecraft arg0, int arg1, int arg2)
 	{
 		
 	}
