@@ -14,6 +14,7 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.passive.EntityChicken;
@@ -47,6 +48,12 @@ import com.setycz.chickens.ChickensRegistryItem;
 @JEIPlugin
 public class JEIPllugin implements IModPlugin 
 {
+    //TODO: This is a placeholder so it will compile.
+    @Override
+    public void registerCategories(IRecipeCategoryRegistration registry){
+
+    }
+
     @Override
     public void register (IModRegistry registry) 
     {
