@@ -52,7 +52,16 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 		}
 	};
 	
-	  
+	  //TODO: This is here for compilation purposes - i need logic!!!
+	public boolean isEmpty(){
+		return true;
+	}
+
+	//TODO: This is here for compilation purposes - i need logic!!!
+	public boolean isUsableByPlayer(EntityPlayer var1){
+		return true;
+	}
+
 	private FluidHandlerFluidMap fluidMap = new FluidHandlerFluidMap().addHandler(ModFluids.liquidfertilizer, fertilizerTank).addHandler(FluidRegistry.WATER, waterTank);
 	
 	protected InventoryStorage inventory = new InventoryStorage(this, 5);
@@ -305,7 +314,6 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 		return 64;
 	}
 
-	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) { return true; }
 
 	@Override

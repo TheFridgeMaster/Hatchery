@@ -27,7 +27,17 @@ public class FeederTileEntity extends TileEntity implements IInventory
 	private int maxSeedInventory = 200;
 	
 	ItemStack[] inventory = new ItemStack[1];
-	
+
+	//TODO: I am here so we can compile, fix me
+	public boolean isEmpty(){
+		return true;
+	}
+
+	//TODO: I am simply here so we can compile, i need to be implemented
+	public boolean isUsableByPlayer(EntityPlayer var1){
+		return true;
+	}
+
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
@@ -174,8 +184,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 		return 64;
 	}
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) 
+	public boolean isUseableByPlayer(EntityPlayer player)
 	{
 		return true;
 	}
