@@ -20,18 +20,18 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "0.3.19"
+version = "0.4.0"
 group= "com.gendeathrow.hatchery" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "hatchery-1.10.2"
+archivesBaseName = "hatchery-1.11.2"
 
 
 sourceCompatibility=1.8
 targetCompatibility=1.8
- 
+
 minecraft {
-    version = "1.10.2-12.18.3.2185"
+    version = minecraft_version + "-" + forge_version + forge_version_suffix
     runDir = "run"
-    mappings = "snapshot_20160701"
+    mappings = "snapshot_20170306"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
