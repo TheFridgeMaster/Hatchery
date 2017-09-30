@@ -187,6 +187,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
 
 
 
+    @Override
     public NBTTagCompound serializeNBT()
     {
         NBTTagList nbtTagList = new NBTTagList();
@@ -206,7 +207,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
         return nbt;
     }
 
-
+    @Override
     public void deserializeNBT(NBTTagCompound nbt)
     {
         setSize(nbt.hasKey("Size", Constants.NBT.TAG_INT) ? nbt.getInteger("Size") : stacks.length);
