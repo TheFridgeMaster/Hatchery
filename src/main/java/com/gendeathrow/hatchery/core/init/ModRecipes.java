@@ -41,7 +41,7 @@ public class ModRecipes
 				"SAA",
 				"xxA",
 				'S', "stickWood",   // can use ordinary items, blocks, itemstacks in ShapedOreRecipe
-				'A', "string",  // look in OreDictionary for vanilla definitions
+				'A', "string"  // look in OreDictionary for vanilla definitions
 		);
 	    GameRegistry.addRecipe(animalNetRecipe);
 	    
@@ -51,7 +51,7 @@ public class ModRecipes
 				'W', "plankWood",   // can use ordinary items, blocks, itemstacks in ShapedOreRecipe
 				'E', "egg",
 				'I', Blocks.IRON_BLOCK,
-				'C', ModItems.circuitBoard, // look in OreDictionary for vanilla definitions
+				'C', ModItems.circuitBoard // look in OreDictionary for vanilla definitions
 		);
 		    GameRegistry.addRecipe(chickenMachineRecipe);
 	    
@@ -247,6 +247,7 @@ public class ModRecipes
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mealPulp, 4), ModItems.featherMeal, ModItems.featherMeal, ModItems.featherMeal,ModItems.featherMeal, ModItems.featherMeal, ModItems.featherMeal, ModItems.featherMeal, ModItems.featherMeal, Items.WATER_BUCKET);
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.EGG), ModItems.hatcheryEgg);
 		
 		GameRegistry.addSmelting(ModItems.featherFiber, new ItemStack(ModItems.plastic), 0);
 		GameRegistry.addSmelting(ModItems.mealPulp, new ItemStack(Items.PAPER), 0);

@@ -105,8 +105,7 @@ public class EntityRooster extends EntityChicken implements IInventory {
 		this.timeUntilNextEgg = 500;
 	}
 	
-	@Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) 
+    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack)
 	{
 		if (!worldObj.isRemote) 
 		{
@@ -266,8 +265,7 @@ public class EntityRooster extends EntityChicken implements IInventory {
 	@Override
 	public void markDirty() { }
 
-	@Override
-	public final boolean isUseableByPlayer(EntityPlayer player) 
+	public final boolean isUseableByPlayer(EntityPlayer player)
 	{
 		return true;
 	}

@@ -27,7 +27,7 @@ archivesBaseName = "hatchery-1.11.2"
 
 sourceCompatibility=1.8
 targetCompatibility=1.8
- 
+
 minecraft {
     version = minecraft_version + "-" + forge_version + forge_version_suffix
     runDir = "run"
@@ -52,6 +52,9 @@ repositories {
 		name 'tterrag maven'
 	    url "http://maven.tterrag.com/"
 	}
+    maven { // Craft Tweaker
+		url "http://maven.blamejared.com/"
+	}
 }
 
 
@@ -61,6 +64,9 @@ dependencies {
 	deobfCompile "mcjty.theoneprobe:TheOneProbe:${top_version}"
     // compile against the JEI API
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
+
+	 deobfCompile "MineTweaker3:MineTweaker3-API:${minetweaker_version}"
+
     // at runtime, use the full JEI jar
     runtime "mezz.jei:jei_${minecraft_version}:${jei_version}"
 }
