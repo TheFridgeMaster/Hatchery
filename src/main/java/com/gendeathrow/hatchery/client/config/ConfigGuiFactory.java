@@ -39,6 +39,7 @@ public class ConfigGuiFactory implements IModGuiFactory
 		return null;
 	}
 
+	//TODO: Fix my depcrcated function, I will be removed in mc 1.12
 	@Override
 	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
 	{
