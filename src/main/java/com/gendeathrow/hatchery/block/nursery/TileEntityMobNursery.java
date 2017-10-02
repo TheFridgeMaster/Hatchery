@@ -25,12 +25,12 @@ public class TileEntityMobNursery extends TileEntity implements ITickable {
 	@Override
 	public void update() 
 	{
-		if (worldObj.isRemote)
+		if (world.isRemote)
 			return;
 		
-		boolean isDayCycle = worldObj.getGameRules().getBoolean("doDaylightCycle");
+		boolean isDayCycle = world.getGameRules().getBoolean("doDaylightCycle");
 
-		if ((isDayCycle ? worldObj.getWorldTime() % 10 == 0 : worldObj.rand.nextInt(9) == 0) && worldObj.getBlockState(pos).getBlock() != null) 
+		if ((isDayCycle ? world.getWorldTime() % 10 == 0 : world.rand.nextInt(9) == 0) && world.getBlockState(pos).getBlock() != null)
 		{
 			checkForAdult();
 			checkForChild();
@@ -65,7 +65,7 @@ public class TileEntityMobNursery extends TileEntity implements ITickable {
 			zPos = 4F;
 		}
 
-		List<EntityAnimal> list = worldObj.getEntitiesWithinAABB(EntityAnimal.class, new AxisAlignedBB(pos.getX() - xNeg, pos.getY(), pos.getZ() - zNeg, pos.getX() + 1D  + xPos, pos.getY() + 1D, pos.getZ() + 1D  + zPos));
+		List<EntityAnimal> list = world.getEntitiesWithinAABB(EntityAnimal.class, new AxisAlignedBB(pos.getX() - xNeg, pos.getY(), pos.getZ() - zNeg, pos.getX() + 1D  + xPos, pos.getY() + 1D, pos.getZ() + 1D  + zPos));
 		for (int i = 0; i < list.size(); i++) 
 		{
 			Entity entity = list.get(i);
@@ -106,7 +106,7 @@ public class TileEntityMobNursery extends TileEntity implements ITickable {
 			zPos = 4F;
 		}
 
-		List<EntityAnimal> list = worldObj.getEntitiesWithinAABB(EntityAnimal.class, new AxisAlignedBB(pos.getX() - xNeg, pos.getY(), pos.getZ() - zNeg, pos.getX() + 1D  + xPos, pos.getY() + 1D, pos.getZ() + 1D  + zPos));
+		List<EntityAnimal> list = world.getEntitiesWithinAABB(EntityAnimal.class, new AxisAlignedBB(pos.getX() - xNeg, pos.getY(), pos.getZ() - zNeg, pos.getX() + 1D  + xPos, pos.getY() + 1D, pos.getZ() + 1D  + zPos));
 		for (int i = 0; i < list.size(); i++) 
 		{
 			Entity entity = list.get(i);

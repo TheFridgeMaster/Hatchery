@@ -79,7 +79,7 @@ public class HatcheryPacket implements IMessage
 				return null;
 			}
 		
-			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.worldObj;
+			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.world;
 	          
 			mainThread.addScheduledTask(new Runnable() 
 				{
@@ -95,7 +95,7 @@ public class HatcheryPacket implements IMessage
 				   			//System.out.println("Server Recieved:"+ nbt.getDouble("bposX")+","+ nbt.getDouble("bposY")+","+ nbt.getDouble("bposZ"));
 				   	     
 				   			
-							TileEntity te = sender.worldObj.getTileEntity(new BlockPos(nbt.getDouble("bposX"), nbt.getDouble("bposY"), nbt.getDouble("bposZ")));
+							TileEntity te = sender.world.getTileEntity(new BlockPos(nbt.getDouble("bposX"), nbt.getDouble("bposY"), nbt.getDouble("bposZ")));
 							
 							NBTTagCompound requestNBT = new NBTTagCompound();
 								

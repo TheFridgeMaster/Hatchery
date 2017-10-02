@@ -152,7 +152,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 			this.fertlizerMixTime--;
 		}
 		
-		if(this.worldObj != null && !this.worldObj.isRemote)
+		if(this.world != null && !this.world.isRemote)
 		{
 			updateUpgrades();
 			
@@ -270,7 +270,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 		{
 			flag1 = true;
 
-			//  BlockFurnace.setState(this.isBurning(), this.worldObj, this.pos);
+			//  BlockFurnace.setState(this.isBurning(), this.world, this.pos);
 		}
 		
 		
@@ -437,7 +437,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 		return 64;
 	}
 
-	public boolean isUseableByPlayer(EntityPlayer player) { return true; }
+	public boolean isUsableByPlayer(EntityPlayer player) { return true; }
 
 	@Override
 	public void openInventory(EntityPlayer player) { this.inventory.openInventory(player); }

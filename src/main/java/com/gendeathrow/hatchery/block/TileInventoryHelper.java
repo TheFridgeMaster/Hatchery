@@ -25,7 +25,6 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 		inventory = new ItemStack[invetorySize];
 	}
 
-
 	@Override
 	public int getSizeInventory() {
 		return inventory.length;
@@ -180,9 +179,8 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 		return null;
 	}
 
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
+	@Overrride
+	public boolean isUsableByPlayer(EntityPlayer player) {
 		return true;
 	}
 

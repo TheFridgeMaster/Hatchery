@@ -82,7 +82,7 @@ public class InventoryStorage  implements IInventory
 		return 64;
 	}
 
-	public boolean isUseableByPlayer(EntityPlayer player) {
+	public boolean isUsableByPlayer(EntityPlayer player) {
 		return true;
 	}
 

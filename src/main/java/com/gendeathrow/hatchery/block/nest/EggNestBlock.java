@@ -117,7 +117,7 @@ public class EggNestBlock extends Block implements ITileEntityProvider, TOPInfoP
     			{
     				EggNestTileEntity te = ((EggNestTileEntity)worldIn.getTileEntity(pos));
     				ItemStack egg = te.removeStackFromSlot(0);
-    				worldIn.spawnEntityInWorld(new EntityItem(worldIn, pos.getX(), pos.getY() + .5d, pos.getZ(), egg));
+    				worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY() + .5d, pos.getZ(), egg));
     			}
     			
      			this.removeEgg(worldIn, state, pos);
