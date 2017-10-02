@@ -19,7 +19,7 @@ public class ISidedInventoryStorage extends InventoryStorage implements ISidedIn
 	}
 
 	@Override
-	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) 
+	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
 	{
 		return true;
 	}

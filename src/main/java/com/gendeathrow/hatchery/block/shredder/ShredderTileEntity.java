@@ -287,7 +287,7 @@ public class ShredderTileEntity extends TileUpgradable implements ITickable, ICo
             if( itemstack == null) return false;
             if (this.inventory.getStackInSlot(1) == null) return true;
             if (!this.inventory.getStackInSlot(1).isItemEqual(itemstack)) return false;
-            int result = inventory.getStackInSlot(1).stackSize + itemstack.stackSize;
+            int result = inventory.getStackInSlot(1).getCount() + itemstack.getCount();
             return result <= 64 && result <= this.inventory.getStackInSlot(1).getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
         }
 	}
@@ -359,7 +359,7 @@ public class ShredderTileEntity extends TileUpgradable implements ITickable, ICo
         		//ItemStack itemstack1 = insertStack(this, itemstack, 0, enumfacing);
                 ItemStack itemstack1 = this.inventory.insertItemInternal(0, itemstack, false);
                 
-                if (itemstack1 != null && itemstack1.stackSize != 0)
+                if (itemstack1 != null && itemstack1.getCount() != 0)
                 {
                 	entityitem.setEntityItemStack(itemstack1);
                 }

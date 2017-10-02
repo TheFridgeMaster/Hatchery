@@ -75,7 +75,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
     @Override
     public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
     {
-        if (stack == null || stack.stackSize == 0)
+        if (stack == null || stack.getCount() == 0)
             return null;
 
         validateSlotIndex(slot);
@@ -94,13 +94,13 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
             if (!ItemHandlerHelper.canItemStacksStack(stack, existing))
                 return stack;
 
-            limit -= existing.stackSize;
+            limit -= existing.getCount();
         }
 
         if (limit <= 0)
             return stack;
 
-        boolean reachedLimit = stack.stackSize > limit;
+        boolean reachedLimit = stack.getCount() > limit;
 
         if (!simulate)
         {
@@ -110,12 +110,12 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
             }
             else
             {
-                existing.stackSize += reachedLimit ? limit : stack.stackSize;
+                existing.getCount() += reachedLimit ? limit : stack.getCount();
             }
             onContentsChanged(slot);
         }
 
-        return reachedLimit ? ItemHandlerHelper.copyStackWithSize(stack, stack.stackSize - limit) : null;
+        return reachedLimit ? ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - limit) : null;
     }
 
 
@@ -146,7 +146,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
 
         int toExtract = Math.min(amount, existing.getMaxStackSize());
 
-        if (existing.stackSize <= toExtract)
+        if (existing.getCount() <= toExtract)
         {
             if (!simulate)
             {
@@ -159,7 +159,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
         {
             if (!simulate)
             {
-                this.stacks[slot] = ItemHandlerHelper.copyStackWithSize(existing, existing.stackSize - toExtract);
+                this.stacks[slot] = ItemHandlerHelper.copyStackWithSize(existing, existing.getCount() - toExtract);
                 onContentsChanged(slot);
             }
 
@@ -219,7 +219,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
 
             if (slot >= 0 && slot < stacks.length)
             {
-                stacks[slot] = ItemStack.loadItemStackFromNBT(itemTags);
+                stacks[slot] = ItemStack.(itemTags);
             }
         }
         onLoad();

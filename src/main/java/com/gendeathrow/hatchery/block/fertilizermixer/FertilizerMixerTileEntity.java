@@ -169,9 +169,9 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
                 		flag1 = true;
                 		 if(this.inventory.getStackInSlot(0) != null)
                 		 {
-                			 --this.inventory.getStackInSlot(0).stackSize;
+                			 --this.inventory.getStackInSlot(0).getCount();
                     		 
-                             if (this.inventory.getStackInSlot(0).stackSize <= 0)
+                             if (this.inventory.getStackInSlot(0).getCount() <= 0)
                              {
                                  this.inventory.setInventorySlotContents(0,null);
                              }
@@ -219,7 +219,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 				ItemStack stack = this.getStackInSlot(1);
 				
 				ItemStack newStack = this.getStackInSlot(1).copy();
-				newStack.stackSize = 1;
+				newStack.getCount() = 1;
 				
 				IFluidHandler handler = FluidUtil.getFluidHandler(newStack);
 
@@ -229,7 +229,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 		            {
 		            	if(FluidUtil.tryFluidTransfer(this.waterTank, handler, this.waterTank.getCapacity(), true) != null)
 		            	{
-		            		if(newStack.stackSize > 0)
+		            		if(newStack.getCount() > 0)
 		            			this.inventory.setInventorySlotContents(2, newStack);
 						
 		            		this.decrStackSize(1, 1);
@@ -243,8 +243,8 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 				ItemStack oldStack = this.inventory.getStackInSlot(3);
 				ItemStack newStack = this.inventory.getStackInSlot(3).copy();
 				
-				if(newStack.stackSize > 1)
-					newStack.stackSize = 1;
+				if(newStack.getCount() > 1)
+					newStack.getCount() = 1;
 				
 				IFluidHandler handler = FluidUtil.getFluidHandler(newStack);
 				
@@ -255,7 +255,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 					{
 						this.setInventorySlotContents(4, newStack);
 						
-						if(oldStack.stackSize > 1)
+						if(oldStack.getCount() > 1)
 							this.decrStackSize(3, 1);
 						else
 							this.setInventorySlotContents(3, null);
