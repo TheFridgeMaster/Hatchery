@@ -170,7 +170,7 @@ public class FeederBlock extends Block implements ITileEntityProvider, TOPInfoPr
 				}
 				else
 				{
-                    	te.setSeeds(heldItem.stackSize, heldItem, playerIn.capabilities.isCreativeMode);
+                    	te.setSeeds(heldItem.getCount(), heldItem, playerIn.capabilities.isCreativeMode);
 				}
     			
     			return true;

@@ -50,7 +50,7 @@ public class HatcheryEgg extends ItemEgg
     {
         if (!playerIn.capabilities.isCreativeMode)
         {
-            --itemStackIn.stackSize;
+            --playerIn.getHeldItem(hand);
         }
 
         worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_EGG_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -80,7 +80,7 @@ public class HatcheryEgg extends ItemEgg
       return nbttaglist;
     }
 
-    public static void setColor(ItemStack itemstackIn, Entity entity)
+    public static void setColor(playerIn.getHeldItem(hand), Entity entity)
     {
     	if(!itemstackIn.hasTagCompound()) itemstackIn.setTagCompound(new NBTTagCompound());
     	

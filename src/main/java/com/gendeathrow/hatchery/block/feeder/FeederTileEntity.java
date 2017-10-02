@@ -134,10 +134,10 @@ public class FeederTileEntity extends TileEntity implements IInventory
 			if (stack != null && seedInventory < this.maxSeedInventory)
 			{
 				int diff = this.seedInventory - this.maxSeedInventory;
-				this.seedInventory += stack.stackSize;
+				this.seedInventory += stack.getCount();
 
-				if(stack.stackSize <= 0) stack= null;
-				else stack.stackSize -= diff;
+				if(stack.getCount() <= 0) stack= null;
+				else stack.getCount() -= diff;
 				
 				FeederBlock.setFeederLevel(this.world, pos, world.getBlockState(pos));
 
@@ -166,8 +166,8 @@ public class FeederTileEntity extends TileEntity implements IInventory
 				
 				if(!creative)
 				{
-					stack.stackSize -= qty;
-					if(stack.stackSize <= 0) stack= null;
+					stack.getCount() -= qty;
+					if(stack.getCount() <= 0) stack= null;
 				}
 
 				FeederBlock.setFeederLevel(this.world, pos, world.getBlockState(pos));
@@ -253,7 +253,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
             ISidedInventory isidedinventory = (ISidedInventory)inventoryIn;
             int[] aint = isidedinventory.getSlotsForFace(side);
 
-            for (int k = 0; k < aint.length && stack != null && stack.stackSize > 0; ++k)
+            for (int k = 0; k < aint.length && stack != null && stack.getCount() > 0; ++k)
             {
                 stack = insertStack(inventoryIn, stack, aint[k], side);
             }
@@ -262,13 +262,13 @@ public class FeederTileEntity extends TileEntity implements IInventory
         {
             int i = inventoryIn.getSizeInventory();
 
-            for (int j = 0; j < i && stack != null && stack.stackSize > 0; ++j)
+            for (int j = 0; j < i && stack != null && stack.getCount() > 0; ++j)
             {
                 stack = insertStack(inventoryIn, stack, j, side);
             }
         }
 
-        if (stack != null && stack.stackSize == 0)
+        if (stack != null && stack.getCount() == 0)
         {
             stack = null;
         }
@@ -291,7 +291,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
             {
                 //Forge: BUGFIX: Again, make things respect max stack sizes.
                 int max = Math.min(stack.getMaxStackSize(), inventoryIn.getInventoryStackLimit());
-                if (max >= stack.stackSize)
+                if (max >= stack.getCount())
                 {
                 inventoryIn.setInventorySlotContents(index, stack);
                 stack = null;
@@ -306,12 +306,12 @@ public class FeederTileEntity extends TileEntity implements IInventory
             {
                 //Forge: BUGFIX: Again, make things respect max stack sizes.
                 int max = Math.min(stack.getMaxStackSize(), inventoryIn.getInventoryStackLimit());
-                if (max > itemstack.stackSize)
+                if (max > itemstack.getCount())
                 {
-                int i = max - itemstack.stackSize;
-                int j = Math.min(stack.stackSize, i);
-                stack.stackSize -= j;
-                itemstack.stackSize += j;
+                int i = max - itemstack.getCount();
+                int j = Math.min(stack.getCount(), i);
+                stack.getCount() -= j;
+                itemstack.getCount() += j;
                 flag = j > 0;
                 }
             }
@@ -330,7 +330,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
     
     private static boolean canCombine(ItemStack stack1, ItemStack stack2)
     {
-        return stack1.getItem() != stack2.getItem() ? false : (stack1.getMetadata() != stack2.getMetadata() ? false : (stack1.stackSize > stack1.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(stack1, stack2)));
+        return stack1.getItem() != stack2.getItem() ? false : (stack1.getMetadata() != stack2.getMetadata() ? false : (stack1.getCount() > stack1.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(stack1, stack2)));
     }
     
     @Override

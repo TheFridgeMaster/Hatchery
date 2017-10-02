@@ -71,8 +71,8 @@ public class InventoryStorage  implements IInventory
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		inventory[slot] = stack;
 
-		if (stack != null && stack.stackSize > getInventoryStackLimit())
-			stack.stackSize = getInventoryStackLimit();
+		if (stack != null && stack.getCount() > getInventoryStackLimit())
+			stack.getCount() = getInventoryStackLimit();
 
         this.markDirty();
 	}
@@ -135,14 +135,14 @@ public class InventoryStorage  implements IInventory
             if (ItemStack.areItemsEqual(itemstack1, itemstack))
             {
                 int j = Math.min(this.getInventoryStackLimit(), itemstack1.getMaxStackSize());
-                int k = Math.min(itemstack.stackSize, j - itemstack1.stackSize);
+                int k = Math.min(itemstack.getCount(), j - itemstack1.getCount());
 
                 if (k > 0)
                 {
-                    itemstack1.stackSize += k;
-                    itemstack.stackSize -= k;
+                    itemstack1.getCount() += k;
+                    itemstack.getCount() -= k;
 
-                    if (itemstack.stackSize <= 0)
+                    if (itemstack.getCount() <= 0)
                     {
                         this.markDirty();
                         return null;
@@ -151,7 +151,7 @@ public class InventoryStorage  implements IInventory
             }
         }
 
-        if (itemstack.stackSize != stack.stackSize)
+        if (itemstack.getCount() != stack.getCount())
         {
             this.markDirty();
         }

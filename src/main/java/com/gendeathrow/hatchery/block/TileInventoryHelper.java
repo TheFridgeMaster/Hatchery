@@ -47,8 +47,8 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 	@Override
     public void setInventorySlotContents(int index, ItemStack stack) {
         inventory[index] = stack;
-        if (stack.stackSize > this.getInventoryStackLimit())
-            stack.stackSize = this.getInventoryStackLimit();
+        if (stack.getCount() > this.getInventoryStackLimit())
+            stack.getCount() = this.getInventoryStackLimit();
         this.markDirty();
     }
 
@@ -116,7 +116,7 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 
             if (slot >= 0 && slot < inventory.length)
             {
-            	inventory[slot] = ItemStack.loadItemStackFromNBT(itemTags);
+            	inventory[slot] = net;
             }
         }
         onLoad();
@@ -198,7 +198,7 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 
 
 	@Override
-	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+	public boolean canInsertItem(int index, playerIn.getHeldItem(hand), EnumFacing direction) {
 		return true;
 	}
 

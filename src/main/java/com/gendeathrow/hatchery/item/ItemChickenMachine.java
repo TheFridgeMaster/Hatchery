@@ -72,7 +72,7 @@ public class ItemChickenMachine extends Item{
                     System.out.println("");
                     SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, playerIn);
                     worldIn.playSound((EntityPlayer)null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                    --stack.stackSize;
+                    --stack.getCount();
                     return EnumActionResult.SUCCESS;
                 }
                 else

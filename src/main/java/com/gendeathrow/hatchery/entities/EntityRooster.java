@@ -150,15 +150,15 @@ public class EntityRooster extends EntityChicken implements IInventory {
 		if(getHasSeeds() && getSeeds() <= MAX_SEEDS -2) 
 		{
 			setSeeds(getSeeds() + 2);
-			getStackInSlot(SEED_SLOT).stackSize -= 2;
-			if(getStackInSlot(SEED_SLOT).stackSize <= 0)
+			getStackInSlot(SEED_SLOT).getCount() -= 2;
+			if(getStackInSlot(SEED_SLOT).getCount() <= 0)
 				setInventorySlotContents(SEED_SLOT, null);
 		}
 	}
 
 	public boolean getHasSeeds() 
 	{
-		return getStackInSlot(SEED_SLOT) != null && TEMPTATION_ITEMS.contains(getStackInSlot(SEED_SLOT).getItem()) && getStackInSlot(SEED_SLOT).stackSize >= 2;
+		return getStackInSlot(SEED_SLOT) != null && TEMPTATION_ITEMS.contains(getStackInSlot(SEED_SLOT).getItem()) && getStackInSlot(SEED_SLOT).getCount() >= 2;
 	}
 
 	public void setSeeds(int size) 
@@ -223,7 +223,7 @@ public class EntityRooster extends EntityChicken implements IInventory {
 		if (inventory[slot] != null) 
 		{
 			ItemStack itemstack;
-			if (inventory[slot].stackSize <= size) 
+			if (inventory[slot].getCount() <= size)
 			{
 				itemstack = inventory[slot];
 				inventory[slot] = null;
@@ -231,7 +231,7 @@ public class EntityRooster extends EntityChicken implements IInventory {
 			} else 
 			{
 				itemstack = inventory[slot].splitStack(size);
-				if (inventory[slot].stackSize == 0)
+				if (inventory[slot].getCount() == 0)
 					inventory[slot] = null;
 				return itemstack;
 			}
@@ -255,8 +255,8 @@ public class EntityRooster extends EntityChicken implements IInventory {
 	{
 		inventory[slot] = stack;
 
-		if (stack != null && stack.stackSize > getInventoryStackLimit())
-			stack.stackSize = getInventoryStackLimit();
+		if (stack != null && stack.getCount() > getInventoryStackLimit())
+			stack.getCount() = getInventoryStackLimit();
 	}
 
 	@Override

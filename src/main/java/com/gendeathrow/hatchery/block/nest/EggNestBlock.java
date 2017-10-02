@@ -131,11 +131,11 @@ public class EggNestBlock extends Block implements ITileEntityProvider, TOPInfoP
 			{
 		        if (!playerIn.capabilities.isCreativeMode) 
 		        {
-		            --heldItem.stackSize;
+		            --heldItem.getCount();
 		        }
     			
 		        ItemStack itemstack = heldItem.copy();
-		        itemstack.stackSize = 1;
+		        itemstack.getCount() = 1;
 				((EggNestTileEntity)worldIn.getTileEntity(pos)).setInventorySlotContents(0,itemstack);
     		}
     		

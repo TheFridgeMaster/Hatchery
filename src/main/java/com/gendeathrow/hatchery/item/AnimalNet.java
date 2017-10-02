@@ -102,9 +102,9 @@ public class AnimalNet extends Item
     	ItemStack newstack = new ItemStack(ModItems.animalNet);
     	addEntityNBT(newstack, entity);        
 
-        if (--stack.stackSize <= 0 && !player.capabilities.isCreativeMode)
+        if (--stack.getCount() <= 0 && !player.capabilities.isCreativeMode)
         {
-        	stack.stackSize = 1;
+        	stack.getCount() = 1;
        		return addEntityNBT(stack, entity);     
         }
         else

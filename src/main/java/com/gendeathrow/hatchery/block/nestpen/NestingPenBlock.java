@@ -125,7 +125,7 @@ public class NestingPenBlock extends Block implements ITileEntityProvider, TOPIn
     		                    
    		    		       if (!playerIn.capabilities.isCreativeMode)
    		                   {
-   		                        --heldItem.stackSize;
+   		                        --heldItem.getCount();
    		                   }
    		    		       te.trySetEntity(entityliving);
    		    		       return true;

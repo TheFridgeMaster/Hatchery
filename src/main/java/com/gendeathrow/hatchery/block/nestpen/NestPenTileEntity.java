@@ -511,7 +511,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
             ISidedInventory isidedinventory = (ISidedInventory)inventoryIn;
             int[] aint = isidedinventory.getSlotsForFace(side);
 
-            for (int k = 0; k < aint.length && stack != null && stack.stackSize > 0; ++k)
+            for (int k = 0; k < aint.length && stack != null && stack.getCount() > 0; ++k)
             {
                 stack = insertStack(inventoryIn, stack, aint[k], side);
             }
@@ -520,13 +520,13 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
         {
             int i = inventoryIn.getSizeInventory();
 
-            for (int j = 0; j < i && stack != null && stack.stackSize > 0; ++j)
+            for (int j = 0; j < i && stack != null && stack.getCount() > 0; ++j)
             {
                 stack = insertStack(inventoryIn, stack, j, side);
             }
         }
 
-        if (stack != null && stack.stackSize == 0)
+        if (stack != null && stack.getCount() == 0)
         {
             stack = null;
         }
@@ -549,7 +549,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
             {
                 //Forge: BUGFIX: Again, make things respect max stack sizes.
                 int max = Math.min(stack.getMaxStackSize(), inventoryIn.getInventoryStackLimit());
-                if (max >= stack.stackSize)
+                if (max >= stack.getCount())
                 {
                 inventoryIn.setInventorySlotContents(index, stack);
                 stack = null;
@@ -564,12 +564,12 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
             {
                 //Forge: BUGFIX: Again, make things respect max stack sizes.
                 int max = Math.min(stack.getMaxStackSize(), inventoryIn.getInventoryStackLimit());
-                if (max > itemstack.stackSize)
+                if (max > itemstack.getCount())
                 {
-                int i = max - itemstack.stackSize;
-                int j = Math.min(stack.stackSize, i);
-                stack.stackSize -= j;
-                itemstack.stackSize += j;
+                int i = max - itemstack.getCount();
+                int j = Math.min(stack.getCount(), i);
+                stack.getCount() -= j;
+                itemstack.getCount() += j;
                 flag = j > 0;
                 }
             }
@@ -588,7 +588,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
     
     private static boolean canCombine(ItemStack stack1, ItemStack stack2)
     {
-        return stack1.getItem() != stack2.getItem() ? false : (stack1.getMetadata() != stack2.getMetadata() ? false : (stack1.stackSize > stack1.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(stack1, stack2)));
+        return stack1.getItem() != stack2.getItem() ? false : (stack1.getMetadata() != stack2.getMetadata() ? false : (stack1.getCount() > stack1.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(stack1, stack2)));
     }
     
     
@@ -608,7 +608,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
                 nbttagcompound.setByte("Slot", (byte)i);
                 nbttagcompound.setString("id", te.inventory.getStackInSlot(i).getDisplayName());
-                nbttagcompound.setInteger("cnt", te.inventory.getStackInSlot(i).stackSize);
+                nbttagcompound.setInteger("cnt", te.inventory.getStackInSlot(i).getCount());
                 nbttaglist.appendTag(nbttagcompound);
             }
         }
