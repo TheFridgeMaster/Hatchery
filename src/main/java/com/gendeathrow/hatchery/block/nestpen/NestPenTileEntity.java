@@ -107,7 +107,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 
 			if(!((EntityChicken) entityin).isChild()) ((EntityChicken) entityin).setGrowingAge(6000);
 			
-			NestingPenBlock.setState(true, this.worldObj, this.pos);
+			NestingPenBlock.setState(true, this.world, this.pos);
 			this.markDirty();
 			return true;
 		}else return false;
@@ -134,7 +134,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 		entityNBT = new NBTTagCompound();	
 		this.chickenStored = null;
 		
-		NestingPenBlock.setState(false, this.worldObj, this.pos);
+		NestingPenBlock.setState(false, this.world, this.pos);
 		
 		this.markDirty();
 		return returnEntity;
@@ -184,7 +184,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 	{
 		ItemStack egg = new ItemStack(ModItems.hatcheryEgg, 1, 0);
     	
-		EntityChicken mate  = (EntityChicken) NestingPenBlock.getNearByMate(worldObj, this.worldObj.getBlockState(pos), pos);
+		EntityChicken mate  = (EntityChicken) NestingPenBlock.getNearByMate(world, this.world.getBlockState(pos), pos);
 		EntityAnimal baby = null;
 		if(mate != null)
 		{
@@ -215,7 +215,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
     	
 		chickenStored.setGrowingAge(6000 + this.rand.nextInt(6000));
 
-		return HatcheryEgg.createEggFromEntity(worldObj, baby);
+		return HatcheryEgg.createEggFromEntity(world, baby);
 	}
 
 
@@ -252,7 +252,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 		
 		//System.out.println(this.chickenStored.posX +":"+ this.chickenStored.posY +":"+ this.chickenStored.posZ);
 		
-		if(this.worldObj.isRemote) 
+		if(this.world.isRemote)
 		{
 			if(!Settings.SHOULD_RENDER_CHICKEN_FLAPS) 
 			{
@@ -290,7 +290,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 		}
 		
 		
-		if (!this.worldObj.isRemote && !chickenStored.isChild() && !chickenStored.isChickenJockey())
+		if (!this.world.isRemote && !chickenStored.isChild() && !chickenStored.isChickenJockey())
 		{
 			if(wasChild && !(this.chickenStored.isChild())) 
 			{
@@ -336,7 +336,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 			if (!chickenStored.isSilent())
 			{
 				chickenStored.playLivingSound();
-				//this.worldObj.playSound((EntityPlayer)null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), SoundEvents.ENTITY_CHICKEN_AMBIENT, chickenStored.getSoundCategory(), 1, 1);
+				//this.world.playSound((EntityPlayer)null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), SoundEvents.ENTITY_CHICKEN_AMBIENT, chickenStored.getSoundCategory(), 1, 1);
 			}
 		}
 	}
@@ -346,8 +346,8 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 	 */
 	public void updateClient()
 	{
-        if(!this.worldObj.isRemote)
-        	worldObj.notifyBlockUpdate(pos, worldObj.getBlockState(pos), worldObj.getBlockState(pos), 2); 
+        if(!this.world.isRemote)
+        	world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 2);
 	}
 	
 	@Override
@@ -415,7 +415,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
         	
         	if(stack != null)
         	{
-        		this.worldObj.spawnEntityInWorld(new EntityItem(worldObj, this.pos.getX(), this.pos.getY()+1, this.pos.getZ(), stack));
+        		this.world.spawnEntity(new EntityItem(world, this.pos.getX(), this.pos.getY()+1, this.pos.getZ(), stack));
         	}
         }
 	}
@@ -478,7 +478,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 	public int getInventoryStackLimit() { return 64; }
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {	return true;}
+	public boolean isUsableByPlayer(EntityPlayer player) {	return true;}
 
 	@Override
 	public void openInventory(EntityPlayer player) { }

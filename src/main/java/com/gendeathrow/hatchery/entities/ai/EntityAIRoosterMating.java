@@ -44,7 +44,7 @@ public class EntityAIRoosterMating extends EntityAIBase {
 
 	public EntityAIRoosterMating(EntityRooster animal, double speedIn) {
 		roosterEntity = animal;
-		theWorld = animal.worldObj;
+		theWorld = animal.world;
 		moveSpeed = speedIn;
 		setMutexBits(3);
 	}
@@ -151,9 +151,9 @@ public class EntityAIRoosterMating extends EntityAIBase {
 	        	
 	            	EntityItem entityItem = new EntityItem(this.theWorld, this.targetChicken.posX, this.targetChicken.posY, this.targetChicken.posZ, egg);
 	            
-	            	this.theWorld.spawnEntityInWorld(entityItem);
+	            	this.theWorld.spawnEntity(entityItem);
 	            }
-	            else this.theWorld.spawnEntityInWorld(entityageable);
+	            else this.theWorld.spawnEntity(entityageable);
 	            
             	Random random = this.targetChicken.getRNG();
 
@@ -171,7 +171,7 @@ public class EntityAIRoosterMating extends EntityAIBase {
 	            
             	if (this.theWorld.getGameRules().getBoolean("doMobLoot"))
             	{
-            		this.theWorld.spawnEntityInWorld(new EntityXPOrb(this.theWorld, this.roosterEntity.posX, this.roosterEntity.posY, this.roosterEntity.posZ, random.nextInt(7) + 1));
+            		this.theWorld.spawnEntity(new EntityXPOrb(this.theWorld, this.roosterEntity.posX, this.roosterEntity.posY, this.roosterEntity.posZ, random.nextInt(7) + 1));
             	}
 	        }
 	 
@@ -227,7 +227,7 @@ public class EntityAIRoosterMating extends EntityAIBase {
 //			targetChicken.resetInLove();
 //			entityageable.setGrowingAge(-24000);
 //			entityageable.setLocationAndAngles(targetChicken.posX, targetChicken.posY, targetChicken.posZ, 0.0F, 0.0F);
-//			theWorld.spawnEntityInWorld(entityageable);
+//			theWorld.spawnEntity(entityageable);
 //			Random random = roosterEntity.getRNG();
 //
 //			for (int i = 0; i < 7; ++i) {
@@ -241,7 +241,7 @@ public class EntityAIRoosterMating extends EntityAIBase {
 //			}
 //
 //			if (theWorld.getGameRules().getBoolean("doMobLoot")) {
-//				theWorld.spawnEntityInWorld(new EntityXPOrb(theWorld, roosterEntity.posX, roosterEntity.posY, roosterEntity.posZ, random.nextInt(7) + 1));
+//				theWorld.spawnEntity(new EntityXPOrb(theWorld, roosterEntity.posX, roosterEntity.posY, roosterEntity.posZ, random.nextInt(7) + 1));
 //			}
 //		}
 //	}

@@ -79,7 +79,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
         	
         	if(stack != null)
         	{
-        		this.worldObj.spawnEntityInWorld(new EntityItem(worldObj, this.pos.getX(), this.pos.getY()+1, this.pos.getZ(), stack));
+        		this.world.spawnEntity(new EntityItem(world, this.pos.getX(), this.pos.getY()+1, this.pos.getZ(), stack));
         	}
         }
 	}
@@ -139,7 +139,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 				if(stack.stackSize <= 0) stack= null;
 				else stack.stackSize -= diff;
 				
-				FeederBlock.setFeederLevel(this.worldObj, pos, worldObj.getBlockState(pos));
+				FeederBlock.setFeederLevel(this.world, pos, world.getBlockState(pos));
 
 			}
 		}
@@ -170,7 +170,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 					if(stack.stackSize <= 0) stack= null;
 				}
 
-				FeederBlock.setFeederLevel(this.worldObj, pos, worldObj.getBlockState(pos));
+				FeederBlock.setFeederLevel(this.world, pos, world.getBlockState(pos));
 			}
 		}
         
@@ -184,7 +184,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 		return 64;
 	}
 
-	public boolean isUseableByPlayer(EntityPlayer player)
+	public boolean isUsableByPlayer(EntityPlayer player)
 	{
 		return true;
 	}

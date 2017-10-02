@@ -89,7 +89,7 @@ public class ShredderTileEntity extends TileUpgradable implements ITickable, ICo
 	public void update() 
 	{
 
-		if (worldObj.isRemote && ShredderBlock.isActive(this.worldObj.getBlockState(this.pos))) 
+		if (world.isRemote && ShredderBlock.isActive(this.world.getBlockState(this.pos)))
 		{
 			prevAnimationTicks = animationTicks;
 			if (animationTicks < 360)
@@ -103,7 +103,7 @@ public class ShredderTileEntity extends TileUpgradable implements ITickable, ICo
 
 		
 		
-        if (this.worldObj != null && !this.worldObj.isRemote)
+        if (this.world != null && !this.world.isRemote)
         {
         	updateUpgrades();
 
@@ -143,7 +143,7 @@ public class ShredderTileEntity extends TileUpgradable implements ITickable, ICo
    			
    			if(flag != (this.isShredding() && hasPower())){
    				flag1 = true;
-   				ShredderBlock.setActive(this.worldObj, this.pos, this.worldObj.getBlockState(this.pos), this.isShredding() && hasPower());			//  BlockFurnace.setState(this.isBurning(), this.worldObj, this.pos);
+   				ShredderBlock.setActive(this.world, this.pos, this.world.getBlockState(this.pos), this.isShredding() && hasPower());			//  BlockFurnace.setState(this.isBurning(), this.world, this.pos);
    			}
    			
    	        if (flag1)
@@ -351,7 +351,7 @@ public class ShredderTileEntity extends TileUpgradable implements ITickable, ICo
 
         boolean flag = false;
 
-        for (EntityItem entityitem : getCaptureItems(this.worldObj, this.getXPos(), this.getYPos(), this.getZPos()))
+        for (EntityItem entityitem : getCaptureItems(this.world, this.getXPos(), this.getYPos(), this.getZPos()))
         {
         	if(isShreddableItem(entityitem.getEntityItem()))
         	{

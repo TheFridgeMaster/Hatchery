@@ -21,7 +21,7 @@ public class GuiNestingPen extends GuiContainer
 
 	    public GuiNestingPen(InventoryPlayer playerInv, IInventory nestingPenIn)
 	    {
-	        super(new ContainerNestingPen(playerInv, nestingPenIn, Minecraft.getMinecraft().thePlayer));
+	        super(new ContainerNestingPen(playerInv, nestingPenIn, Minecraft.getMinecraft().player));
 	        this.playerInventory = playerInv;
 	        this.nestingInventory = nestingPenIn;
 	        this.allowUserInput = false;
@@ -33,8 +33,8 @@ public class GuiNestingPen extends GuiContainer
 	     */
 	    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	    {
-	        this.fontRendererObj.drawString(new TextComponentTranslation("container.nestingpen").getFormattedText(), 8, 6, 4210752);
-	        this.fontRendererObj.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+	        this.fontRenderer.drawString(new TextComponentTranslation("container.nestingpen").getFormattedText(), 8, 6, 4210752);
+	        this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
 	    }
 
 	    /**

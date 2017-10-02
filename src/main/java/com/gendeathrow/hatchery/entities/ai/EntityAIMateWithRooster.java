@@ -30,7 +30,7 @@ public class EntityAIMateWithRooster extends EntityAIBase {
 
 	public EntityAIMateWithRooster(EntityAnimal animal, double speedIn) {
 		theAnimal = animal;
-		theWorld = animal.worldObj;
+		theWorld = animal.world;
 		moveSpeed = speedIn;
 		setMutexBits(3);
 	}
@@ -130,7 +130,7 @@ public class EntityAIMateWithRooster extends EntityAIBase {
 			targetMate.resetInLove();
 			entityageable.setGrowingAge(-24000);
 			entityageable.setLocationAndAngles(theAnimal.posX, theAnimal.posY, theAnimal.posZ, 0.0F, 0.0F);
-			theWorld.spawnEntityInWorld(entityageable);
+			theWorld.spawnEntity(entityageable);
 			Random random = theAnimal.getRNG();
 
 			for (int i = 0; i < 7; ++i) {
@@ -144,7 +144,7 @@ public class EntityAIMateWithRooster extends EntityAIBase {
 			}
 
 			if (theWorld.getGameRules().getBoolean("doMobLoot")) {
-				theWorld.spawnEntityInWorld(new EntityXPOrb(theWorld, theAnimal.posX, theAnimal.posY, theAnimal.posZ, random.nextInt(7) + 1));
+				theWorld.spawnEntity(new EntityXPOrb(theWorld, theAnimal.posX, theAnimal.posY, theAnimal.posZ, random.nextInt(7) + 1));
 			}
 		}
 	}

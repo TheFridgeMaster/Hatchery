@@ -14,10 +14,10 @@ public class ContainerNestingPen extends Container
 {
     private final IInventory nestingPenInventory;
 	
-	public ContainerNestingPen(InventoryPlayer playerInventory, IInventory nestingPenIn, EntityPlayer thePlayer) 
+	public ContainerNestingPen(InventoryPlayer playerInventory, IInventory nestingPenIn, EntityPlayer player)
 	{
         this.nestingPenInventory = nestingPenIn;
-        nestingPenIn.openInventory(thePlayer);
+        nestingPenIn.openInventory(player);
         int i = 51;
 
         for (int j = 0; j < nestingPenIn.getSizeInventory(); ++j)

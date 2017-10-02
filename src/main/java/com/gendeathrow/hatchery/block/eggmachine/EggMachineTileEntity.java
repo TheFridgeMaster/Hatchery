@@ -70,7 +70,7 @@ public class EggMachineTileEntity extends TileUpgradable implements ITickable, I
 		if(firstRun)
 		{
 			firstRun = false;
-			EnumFacing facing = EggMachineBlock.getFacing(this.worldObj.getBlockState(this.pos));
+			EnumFacing facing = EggMachineBlock.getFacing(this.world.getBlockState(this.pos));
 			this.zeroedFacing = facing.getHorizontalAngle();
 			animationTicks = this.zeroedFacing;
 		}
@@ -89,7 +89,7 @@ public class EggMachineTileEntity extends TileUpgradable implements ITickable, I
 	@Override
 	public void update() {
 		
-		if(this.worldObj.isRemote)
+		if(this.world.isRemote)
 			this.updateClient();
 		
 		ItemStack eggIn = this.inventory.getStackInSlot(this.EggInSlot);
@@ -117,7 +117,7 @@ public class EggMachineTileEntity extends TileUpgradable implements ITickable, I
 		ItemStack prizeSlot = this.inventory.getStackInSlot(this.PrizeEggSlot);
 		boolean hasRoomForEgg = prizeSlot == null ? true : prizeSlot.stackSize < prizeSlot.getMaxStackSize();
 		
-        if (!this.worldObj.isRemote){
+        if (!this.world.isRemote){
     		if(hasTimeLeft && this.energy.getEnergyStored() >= 40 && hasRoomForEgg){
     			--eggTime;
     			this.energy.extractEnergy(40, false);
@@ -242,9 +242,8 @@ public class EggMachineTileEntity extends TileUpgradable implements ITickable, I
 	}
 
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		return this.inventory.isUseableByPlayer(player);
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		return this.inventory.isUsableByPlayer(player);
 	}
 
 

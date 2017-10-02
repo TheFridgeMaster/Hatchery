@@ -36,7 +36,7 @@ public class ChickenBreeding extends EntityAIBase
     public ChickenBreeding(EntityAnimal animal, double speedIn)
     {
         this.theAnimal = animal;
-        this.theWorld = animal.worldObj;
+        this.theWorld = animal.world;
         this.moveSpeed = speedIn;
         this.setMutexBits(3);
     }
@@ -162,7 +162,7 @@ public class ChickenBreeding extends EntityAIBase
         	
             EntityItem entityItem = new EntityItem(this.theWorld, this.theAnimal.posX, this.theAnimal.posY, this.theAnimal.posZ, egg);
             
-            this.theWorld.spawnEntityInWorld(entityItem);
+            this.theWorld.spawnEntity(entityItem);
             
             Random random = this.theAnimal.getRNG();
 
@@ -179,7 +179,7 @@ public class ChickenBreeding extends EntityAIBase
 
             if (this.theWorld.getGameRules().getBoolean("doMobLoot"))
             {
-                this.theWorld.spawnEntityInWorld(new EntityXPOrb(this.theWorld, this.theAnimal.posX, this.theAnimal.posY, this.theAnimal.posZ, random.nextInt(7) + 1));
+                this.theWorld.spawnEntity(new EntityXPOrb(this.theWorld, this.theAnimal.posX, this.theAnimal.posY, this.theAnimal.posZ, random.nextInt(7) + 1));
             }
         }
  

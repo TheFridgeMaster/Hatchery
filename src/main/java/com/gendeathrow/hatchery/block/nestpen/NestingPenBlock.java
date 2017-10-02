@@ -163,7 +163,7 @@ public class NestingPenBlock extends Block implements ITileEntityProvider, TOPIn
     		{
     			te.storedEntity().setPosition(te.getPos().getX() + .5, te.getPos().getY(), te.getPos().getZ() + .5);
     			te.storedEntity().captureDrops = false;
-    			worldIn.spawnEntityInWorld(te.storedEntity());
+    			worldIn.spawnEntity(te.storedEntity());
     			
     			te.storedEntity().setNoAI(false);
     		}

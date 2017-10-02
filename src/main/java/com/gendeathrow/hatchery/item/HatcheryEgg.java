@@ -59,7 +59,7 @@ public class HatcheryEgg extends ItemEgg
         {
         	HatcheryEggThrown entityegg = new HatcheryEggThrown(worldIn, playerIn, itemStackIn);
             entityegg.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            worldIn.spawnEntityInWorld(entityegg);
+            worldIn.spawnEntity(entityegg);
         }
 
         playerIn.addStat(StatList.getObjectUseStats(this));

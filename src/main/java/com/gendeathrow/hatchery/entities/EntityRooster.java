@@ -97,7 +97,7 @@ public class EntityRooster extends EntityChicken implements IInventory {
 
 		wingRotation += wingRotDelta * 2.0F;
 
-		if(worldObj.getWorldTime()%5 == 0 && !worldObj.isRemote)
+		if(world.getWorldTime()%5 == 0 && !world.isRemote)
 			convertSeeds();
 		
 		
@@ -107,12 +107,12 @@ public class EntityRooster extends EntityChicken implements IInventory {
 	
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack)
 	{
-		if (!worldObj.isRemote) 
+		if (!world.isRemote)
 		{
 			if(hand == EnumHand.MAIN_HAND && (stack == null || stack.getItem() instanceof ItemSeeds))
 			{
 				//if(stack !=null) System.out.println(stack.getDisplayName());
-				player.openGui(Hatchery.INSTANCE, CommonProxy.GUI_ID_ROOSTER, player.worldObj, getEntityId(), 0, 0);
+				player.openGui(Hatchery.INSTANCE, CommonProxy.GUI_ID_ROOSTER, player.world, getEntityId(), 0, 0);
 				
 				return true;
 			}
@@ -265,7 +265,7 @@ public class EntityRooster extends EntityChicken implements IInventory {
 	@Override
 	public void markDirty() { }
 
-	public final boolean isUseableByPlayer(EntityPlayer player)
+	public final boolean isUsableByPlayer(EntityPlayer player)
 	{
 		return true;
 	}

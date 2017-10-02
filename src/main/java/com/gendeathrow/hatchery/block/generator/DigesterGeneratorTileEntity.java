@@ -116,7 +116,7 @@ public class DigesterGeneratorTileEntity extends TileUpgradable implements IInve
 	{
         boolean flag = this.isGenerating();
         
-		if(!this.worldObj.isRemote)
+		if(!this.world.isRemote)
 		{
 			updateUpgrades();
 			
@@ -136,7 +136,7 @@ public class DigesterGeneratorTileEntity extends TileUpgradable implements IInve
 			{
 				for (EnumFacing facing : EnumFacing.VALUES) 
 				{
-						TileEntity tile = worldObj.getTileEntity(pos.offset(facing));
+						TileEntity tile = world.getTileEntity(pos.offset(facing));
 						if (tile != null && tile instanceof IEnergyReceiver) 
 						{
 							int received = ((IEnergyReceiver) tile).receiveEnergy(facing.getOpposite(), energy.getEnergyStored(), false);
@@ -165,7 +165,7 @@ public class DigesterGeneratorTileEntity extends TileUpgradable implements IInve
 			if (flag != isGenerating())
 			{
 				//flag1 = true;
-				DigesterGeneratorBlock.setState(this.isGenerating(), this.worldObj, this.pos);
+				DigesterGeneratorBlock.setState(this.isGenerating(), this.world, this.pos);
 			}
 		}
 	}
@@ -269,7 +269,7 @@ public class DigesterGeneratorTileEntity extends TileUpgradable implements IInve
 
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
+	public boolean isUsableByPlayer(EntityPlayer player) {
 		return true;
 	}
 
