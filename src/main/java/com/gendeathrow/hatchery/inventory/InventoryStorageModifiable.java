@@ -219,7 +219,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
 
             if (slot >= 0 && slot < stacks.length)
             {
-                stacks[slot] = ItemStack.(itemTags);
+                stacks[slot] = new ItemStack(itemTags);
             }
         }
         onLoad();

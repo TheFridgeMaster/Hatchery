@@ -115,7 +115,7 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 
 			if (slot >= 0 && slot < inventory.length)
 			{
-				inventory[slot] = ItemStack.loadItemStackFromNBT(itemTags);
+				inventory[slot] = new ItemStack(itemTags);
 			}
 		}
 		onLoad();

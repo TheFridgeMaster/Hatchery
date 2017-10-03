@@ -205,7 +205,7 @@ public class EntityRooster extends EntityChicken implements IInventory {
 			NBTTagCompound data = tags.getCompoundTagAt(i);
 			int j = data.getByte("Slot") & 255;
 			if (j >= 0 && j < inventory.length)
-				inventory[j] = ItemStack.loadItemStackFromNBT(data);
+				inventory[j] = new ItemStack(data);
 		}
 	}
 
