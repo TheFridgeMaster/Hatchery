@@ -169,13 +169,6 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 	}
 
 	@Override
-	public boolean canInsertItem(int integer, ItemStack itemStack, EnumFacing enumFacing) {
-		//TODO: Implement me....
-		return true;
-	}
-
-
-	@Override
 	public ItemStack removeStackFromSlot(int index) {
 		return null;
 	}
@@ -198,10 +191,10 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 	}
 
 
-//	@Override
-//	public boolean canInsertItem(int index, playerIn.getHeldItem(hand), EnumFacing direction) {
-//		return true;
-//	}
+	@Override
+	public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) {
+		return true;
+	}
 
 
 	@Override
