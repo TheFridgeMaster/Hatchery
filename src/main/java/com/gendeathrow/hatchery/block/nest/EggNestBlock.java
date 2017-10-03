@@ -135,7 +135,7 @@ public class EggNestBlock extends Block implements ITileEntityProvider, TOPInfoP
 		        }
     			
 		        ItemStack itemstack = heldItem.copy();
-		        itemstack.getCount() = 1;
+		        itemstack.setCount(1);
 				((EggNestTileEntity)worldIn.getTileEntity(pos)).setInventorySlotContents(0,itemstack);
     		}
     		

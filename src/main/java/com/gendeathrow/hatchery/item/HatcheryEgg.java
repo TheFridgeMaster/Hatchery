@@ -69,7 +69,7 @@ public class HatcheryEgg extends ItemEgg
     protected NBTTagList newDoubleNBTList(double[] dob)
     {
       NBTTagList nbttaglist = new NBTTagList();
-      double[] adouble = dob;
+      //double[] adouble = dob;
       int i = dob.length;
 
       for (int j = 0; j < i; j++) {
@@ -80,7 +80,7 @@ public class HatcheryEgg extends ItemEgg
       return nbttaglist;
     }
 
-    public static void setColor(playerIn.getHeldItem(hand), Entity entity)
+    public static void setColor(ItemStack itemstackIn, Entity entity)
     {
     	if(!itemstackIn.hasTagCompound()) itemstackIn.setTagCompound(new NBTTagCompound());
     	
@@ -103,7 +103,7 @@ public class HatcheryEgg extends ItemEgg
 		ItemStack egg = new ItemStack(ModItems.hatcheryEgg, 1, 0);
 		egg.setStackDisplayName(entity.getDisplayName().getFormattedText() +" Egg");
 	  	HatcheryEgg.setColor(egg, entity);
-    	ItemStackEntityNBTHelper.addEntitytoItemStack(egg, (EntityLiving)entity);
+    	ItemStackEntityNBTHelper.addEntitytoItemStack(egg, entity);
     	
     	return egg;
     }

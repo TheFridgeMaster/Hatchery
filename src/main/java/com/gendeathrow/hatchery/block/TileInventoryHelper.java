@@ -198,7 +198,7 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 
 
 	@Override
-	public boolean canInsertItem(int index, playerIn.getHeldItem(hand), EnumFacing direction) {
+	public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) {
 		return true;
 	}
 
