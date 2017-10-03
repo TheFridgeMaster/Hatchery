@@ -173,7 +173,7 @@ public class HatcheryPacket implements IMessage
         			{
             			//System.out.println("Client Recieved"+ nbt.getDouble("bposX")+","+ nbt.getDouble("bposY")+","+ nbt.getDouble("bposZ"));
 
-        				TileEntity te = Minecraft.getMinecraft().theWorld.getTileEntity(new BlockPos(nbt.getDouble("bposX"), nbt.getDouble("bposY"), nbt.getDouble("bposZ")));
+        				TileEntity te = Minecraft.getMinecraft().world.getTileEntity(new BlockPos(nbt.getDouble("bposX"), nbt.getDouble("bposY"), nbt.getDouble("bposZ")));
         				
         				te.readFromNBT(nbt);
         				

@@ -110,7 +110,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
             }
             else
             {
-                existing.getCount() += reachedLimit ? limit : stack.getCount();
+                existing.getCount() += reachedLimit ? limit : stack.setCount();
             }
             onContentsChanged(slot);
         }
@@ -219,7 +219,7 @@ public class InventoryStorageModifiable implements IItemHandler, IItemHandlerMod
 
             if (slot >= 0 && slot < stacks.length)
             {
-                stacks[slot] = ItemStack.(itemTags);
+                stacks[slot] = new ItemStack(itemTags);
             }
         }
         onLoad();

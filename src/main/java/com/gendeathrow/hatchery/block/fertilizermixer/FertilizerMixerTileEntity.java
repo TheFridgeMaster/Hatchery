@@ -169,7 +169,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
                 		flag1 = true;
                 		 if(this.inventory.getStackInSlot(0) != null)
                 		 {
-                			 --this.inventory.getStackInSlot(0).getCount();
+                			 --this.inventory.getStackInSlot(0).setCount();
                     		 
                              if (this.inventory.getStackInSlot(0).getCount() <= 0)
                              {

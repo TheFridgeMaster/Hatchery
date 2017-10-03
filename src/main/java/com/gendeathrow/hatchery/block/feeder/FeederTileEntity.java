@@ -137,7 +137,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 				this.seedInventory += stack.getCount();
 
 				if(stack.getCount() <= 0) stack= null;
-				else stack.getCount() -= diff;
+				else stack.setCount(stack.getCount() - diff);
 				
 				FeederBlock.setFeederLevel(this.world, pos, world.getBlockState(pos));
 
