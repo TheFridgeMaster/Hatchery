@@ -20,13 +20,18 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FeederTileEntity extends TileEntity implements IInventory
 {
 
 	private int seedInventory = 0;
 	private int maxSeedInventory = 200;
 	
-	ItemStack[] inventory = new ItemStack[1];
+//	private ItemStack[] inventory = new ItemStack[1];
+
+	public List<ItemStack> inventory = new ArrayList<ItemStack>();
 
 	//TODO: I am here so we can compile, fix me
 	public boolean isEmpty(){
@@ -68,7 +73,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 	public void dropContents()
 	{
 		
-        for (int i = 0; i < this.inventory.length; ++i)
+        for (int i = 0; i < this.inventory.size(); ++i)
         {
         	ItemStack stack = ItemStackHelper.getAndRemove(this.inventory, i);
         	
@@ -99,7 +104,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 	@Override
 	public ItemStack getStackInSlot(int index) 
 	{
-		return this.inventory[index];
+		return this.inventory.get(index);
 	}
 
 	@Override
@@ -210,11 +215,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 	@Override
 	public void clear() 
 	{
-	
-	        for (int i = 0; i < this.inventory.length; ++i)
-	        {
-	            this.inventory[i] = null;
-	        }
+		this.inventory = null;
 	}
 	
     public static IItemHandler getItemHandler(TileEntity tile, EnumFacing side) 
