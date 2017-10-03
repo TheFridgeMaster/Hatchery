@@ -39,7 +39,7 @@ public class EggNestTileEntityRender extends TileEntitySpecialRenderer<EggNestTi
     {
         GlStateManager.pushMatrix();
     	
-    	renderitem.setAngles(0, 0);
+    	renderitem.turn(0, 0);
     	renderitem.hoverStart = 0f;
 
         GlStateManager.color(1f, 1f, 1f, 1f);

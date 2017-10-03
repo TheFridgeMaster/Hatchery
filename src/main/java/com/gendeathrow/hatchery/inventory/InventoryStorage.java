@@ -50,7 +50,7 @@ public class InventoryStorage  implements IInventory
 	public ItemStack decrStackSize(int slot, int count) {
         ItemStack itemstack = ItemStackHelper.getAndSplit(this.inventory, slot, count);
 
-        if (itemstack != null)
+        if (itemstack.isEmpty())
         {
             inventoryTile.markDirty();
         }			

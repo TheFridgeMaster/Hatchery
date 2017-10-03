@@ -179,7 +179,7 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 		return null;
 	}
 
-	@Overrride
+	@Override
 	public boolean isUsableByPlayer(EntityPlayer player) {
 		return true;
 	}

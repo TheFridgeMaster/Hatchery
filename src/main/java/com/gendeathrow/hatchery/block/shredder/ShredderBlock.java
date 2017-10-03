@@ -46,7 +46,7 @@ public class ShredderBlock extends BlockHorizontal implements ITileEntityProvide
 		return new ShredderTileEntity();
 	}
 
-	@Override
+	//@Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
 		playerIn.openGui(Hatchery.INSTANCE, CommonProxy.GUI_ID_DIGESTER_GEN, worldIn, pos.getX(), pos.getY(), pos.getZ());

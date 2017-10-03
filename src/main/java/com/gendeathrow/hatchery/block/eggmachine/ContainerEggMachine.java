@@ -113,7 +113,7 @@ public class ContainerEggMachine extends Container
             {
                 return null;
             }
-
+			//TODO will require IItemHandler to continue
             slot.onPickupFromSlot(player, itemstack1);
         }
         
