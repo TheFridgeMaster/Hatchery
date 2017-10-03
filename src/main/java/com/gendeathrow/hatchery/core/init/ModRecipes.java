@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -23,7 +24,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-public class ModRecipes 
+public class ModRecipes
 {
 
 	public static void RegisterOreDic()
@@ -105,9 +106,9 @@ public class ModRecipes
 	    	IRecipe bucketFert = new ShapelessRecipes(ModFluids.getFertilizerBucket(), bucketFertIngre)
 	    {
 
-	        public ItemStack[] getRemainingItems(InventoryCrafting inv)
+	        public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 	        {
-				return new ItemStack[inv.getSizeInventory()];
+				return NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
 	    	}
 	    	
 	    };
@@ -354,18 +355,21 @@ public class ModRecipes
 	    	return 4;
 	    }
 
-
-	    public ItemStack[] getRemainingItems(InventoryCrafting inv)
+		@Override
+	    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 	    {
-	        ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
+			int size = inv.getSizeInventory();
 
-	        for (int i = 0; i < aitemstack.length; ++i)
-	        {
-	            ItemStack itemstack = inv.getStackInSlot(i);
-	            aitemstack[i] = net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack);
-	        }
+			NonNullList<ItemStack> list = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
 
-	        return aitemstack;
-	    }
+			for (int i = 0; i < size; ++i)
+			{
+				ItemStack itemstack = inv.getStackInSlot(i);
+				list.set(i, net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack));
+			}
+
+			return list;
+		}
+
 	}
 }
