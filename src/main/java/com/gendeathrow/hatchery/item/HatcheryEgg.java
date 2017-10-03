@@ -115,7 +115,7 @@ public class HatcheryEgg extends ItemEgg
     	{
     		//Support for DNA on Chickens Mod
     		NBTTagCompound tag = stack.getTagCompound();
-    		
+
     		if(tag.hasKey("storedEntity"))
     		{
     			NBTTagCompound entityNBT = tag.getCompoundTag("storedEntity");
