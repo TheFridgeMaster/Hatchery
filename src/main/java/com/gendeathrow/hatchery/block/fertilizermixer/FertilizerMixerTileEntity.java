@@ -210,7 +210,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 			}
 			else if(!this.isMixing() && this.mixTime > 0)
 			{
-				 this.mixTime = MathHelper.clamp_int(this.mixTime - 2, 0, this.totalMixTime);
+				 this.mixTime = MathHelper.clamp(this.mixTime - 2, 0, this.totalMixTime);
 			}
 			
 

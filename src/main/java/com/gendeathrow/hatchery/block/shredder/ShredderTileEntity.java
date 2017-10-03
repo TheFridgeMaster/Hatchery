@@ -153,7 +153,7 @@ public class ShredderTileEntity extends TileUpgradable implements ITickable, ICo
 
 //			else if(!this.isShredding() && this.shredTime > 0)
 //			{
-//				 this.shredTime = MathHelper.clamp_int(this.shredTime - 2, 0, this.totalshredTime);
+//				 this.shredTime = MathHelper.clamp(this.shredTime - 2, 0, this.totalshredTime);
 //			}
 			
 
