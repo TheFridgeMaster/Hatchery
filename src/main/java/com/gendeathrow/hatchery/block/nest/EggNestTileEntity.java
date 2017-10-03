@@ -200,7 +200,7 @@ public class EggNestTileEntity extends TileEntity implements ITickable//, IInven
     {
     	this.hatchingTick = compound.getInteger("hatchTime");
     	
-    	this.eggSlot[0] = ItemStack.loadItemStackFromNBT(compound.getCompoundTag("egg"));
+    	this.eggSlot[0] = new ItemStack(compound.getCompoundTag("egg"));
     	super.readFromNBT(compound);
     }
 
@@ -385,7 +385,7 @@ public class EggNestTileEntity extends TileEntity implements ITickable//, IInven
 		NBTTagCompound sendnbt = new NBTTagCompound();  	
 		sendnbt = this.writeToNBT(sendnbt);
 		NBTTagCompound egg = sendnbt.getCompoundTag("egg");
-		ItemStack test = ItemStack.loadItemStackFromNBT(egg);
+		ItemStack test = new ItemStack(egg);
        return new SPacketUpdateTileEntity(this.getPos(), this.getBlockMetadata(), sendnbt);
     }
 
@@ -394,7 +394,7 @@ public class EggNestTileEntity extends TileEntity implements ITickable//, IInven
     {
     	//System.out.println("[DEBUG]:Client recived tile sync packet");
 		NBTTagCompound egg = pkt.getNbtCompound().getCompoundTag("egg");
-		ItemStack test = ItemStack.loadItemStackFromNBT(egg);
+		ItemStack test = new ItemStack(egg);
   		this.readFromNBT(pkt.getNbtCompound());
     	this.markDirty();
     }

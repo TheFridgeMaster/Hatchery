@@ -33,11 +33,6 @@ public class FeederTileEntity extends TileEntity implements IInventory
 		return true;
 	}
 
-	//TODO: I am simply here so we can compile, i need to be implemented
-	public boolean isUsableByPlayer(EntityPlayer var1){
-		return true;
-	}
-
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
@@ -137,7 +132,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 				this.seedInventory += stack.getCount();
 
 				if(stack.getCount() <= 0) stack= null;
-				else stack.getCount() -= diff;
+				else stack.setCount(stack.getCount() - diff);
 				
 				FeederBlock.setFeederLevel(this.world, pos, world.getBlockState(pos));
 
@@ -166,7 +161,7 @@ public class FeederTileEntity extends TileEntity implements IInventory
 				
 				if(!creative)
 				{
-					stack.getCount() -= qty;
+					stack.setCount(stack.getCount() - qty);
 					if(stack.getCount() <= 0) stack= null;
 				}
 
@@ -310,8 +305,8 @@ public class FeederTileEntity extends TileEntity implements IInventory
                 {
                 int i = max - itemstack.getCount();
                 int j = Math.min(stack.getCount(), i);
-                stack.getCount() -= j;
-                itemstack.getCount() += j;
+				stack.setCount(stack.getCount() - j);
+				itemstack.setCount(stack.getCount() - j);
                 flag = j > 0;
                 }
             }

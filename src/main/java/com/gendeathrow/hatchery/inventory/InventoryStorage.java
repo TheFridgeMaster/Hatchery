@@ -68,11 +68,17 @@ public class InventoryStorage  implements IInventory
 	}
 
 	@Override
+	public boolean isEmpty(){
+		//TODO: Implement me.
+		return false;
+	}
+
+	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		inventory[slot] = stack;
 
 		if (stack != null && stack.getCount() > getInventoryStackLimit())
-			stack.getCount() = getInventoryStackLimit();
+			stack.setCount(getInventoryStackLimit());
 
         this.markDirty();
 	}
@@ -82,9 +88,6 @@ public class InventoryStorage  implements IInventory
 		return 64;
 	}
 
-	public boolean isUsableByPlayer(EntityPlayer player) {
-		return true;
-	}
 
 	public void readFromNBT(NBTTagCompound nbt) {
 
@@ -96,7 +99,7 @@ public class InventoryStorage  implements IInventory
 			int j = data.getByte("Slot") & 255;
 
 			if (j >= 0 && j < inventory.length)
-				inventory[j] = ItemStack.loadItemStackFromNBT(data);
+				inventory[j] = new ItemStack(data);
 		}
 	}
 
@@ -139,8 +142,8 @@ public class InventoryStorage  implements IInventory
 
                 if (k > 0)
                 {
-                    itemstack1.getCount() += k;
-                    itemstack.getCount() -= k;
+                    itemstack1.setCount(+k);
+                    itemstack.setCount(-k);
 
                     if (itemstack.getCount() <= 0)
                     {
