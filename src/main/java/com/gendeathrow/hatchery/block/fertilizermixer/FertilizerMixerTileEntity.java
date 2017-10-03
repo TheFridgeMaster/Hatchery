@@ -169,7 +169,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
                 		flag1 = true;
                 		 if(this.inventory.getStackInSlot(0) != null)
                 		 {
-                			 --this.inventory.getStackInSlot(0).setCount();
+							 this.inventory.getStackInSlot(0).setCount(this.inventory.getStackInSlot(0).getCount() - 1);
                     		 
                              if (this.inventory.getStackInSlot(0).getCount() <= 0)
                              {
@@ -219,7 +219,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 				ItemStack stack = this.getStackInSlot(1);
 				
 				ItemStack newStack = this.getStackInSlot(1).copy();
-				newStack.getCount() = 1;
+				newStack.setCount(1);
 				
 				IFluidHandler handler = FluidUtil.getFluidHandler(newStack);
 
@@ -244,7 +244,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 				ItemStack newStack = this.inventory.getStackInSlot(3).copy();
 				
 				if(newStack.getCount() > 1)
-					newStack.getCount() = 1;
+					newStack.setCount(1);
 				
 				IFluidHandler handler = FluidUtil.getFluidHandler(newStack);
 				

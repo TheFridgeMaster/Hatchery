@@ -39,7 +39,7 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 	@Override
     public ItemStack decrStackSize(int index, int count) {
 		ItemStack itemstack = ItemStackHelper.getAndSplit(inventory, index, count);
-		if (itemstack != null)
+		if (!itemstack.isEmpty())
 			this.markDirty();
 		return itemstack;
 	}
@@ -48,7 +48,7 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
     public void setInventorySlotContents(int index, ItemStack stack) {
         inventory[index] = stack;
         if (stack.getCount() > this.getInventoryStackLimit())
-            stack.getCount() = this.getInventoryStackLimit();
+            stack.setCount(this.getInventoryStackLimit());
         this.markDirty();
     }
 
@@ -116,7 +116,7 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 
             if (slot >= 0 && slot < inventory.length)
             {
-            	inventory[slot] = ItemStack(itemTags);
+            	inventory[slot] = new ItemStack(itemTags);
             }
         }
         onLoad();

@@ -65,7 +65,13 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
     private float newWingRotDelta;
     private float newWingRotation;
 
-	
+	public boolean isEmpty() {
+		if (this.isEmpty())
+			return true;
+		else
+			return false;
+	}
+
 	public NestPenTileEntity()
 	{
 		super();
@@ -262,7 +268,7 @@ public class NestPenTileEntity extends TileEntity  implements ITickable, IInvent
 			this.chickenStored.oFlap = this.chickenStored.wingRotation;
 			this.chickenStored.oFlapSpeed = this.chickenStored.destPos;
 			this.chickenStored.destPos = (float)((double)this.chickenStored.destPos + (double)(this.notFlapping ? -1 : 4) * 0.3D);
-			this.chickenStored.destPos = MathHelper.clamp_float(this.chickenStored.destPos, 0.0F, 1.0F);
+			this.chickenStored.destPos = MathHelper.clamp(this.chickenStored.destPos, 0.0F, 1.0F);
 	        
 	        
 			if(notFlapping || this.chickenStored.getRNG().nextFloat() < 0.02F)

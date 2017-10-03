@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -61,8 +62,8 @@ public class Hatchery {
     static int startEntityId = 1;
 
     public static CreativeTabs hatcheryTabs = new CreativeTabs(MODID) {
-        public Item getTabIconItem() {
-            return ModItems.hatcheryEgg;
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ModItems.hatcheryEgg);
         }
     };
 

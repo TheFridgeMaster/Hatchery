@@ -18,6 +18,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
@@ -37,13 +38,19 @@ import com.gendeathrow.hatchery.core.init.ModItems;
 import com.gendeathrow.hatchery.core.proxies.CommonProxy;
 import com.gendeathrow.hatchery.entities.ai.EntityAIRoosterMating;
 import com.google.common.collect.Sets;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class EntityRooster extends EntityChicken implements IInventory {
+//TODO slowly implementing IItemHandler over the old Inventory
+
+public class EntityRooster extends EntityChicken {
 	public static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(new Item[] { Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS });
-	public ItemStack[] inventory;
+	public ItemStackHandler itemStackHandler;
 	public static final int SEED_SLOT = 0;
 	public static final int MAX_SEEDS = 20;
 	private static final DataParameter<Integer> SEEDS = EntityDataManager.<Integer>createKey(EntityRooster.class, DataSerializers.VARINT);
+
 
 	public EntityRooster(World world) {
 		super(world);
@@ -85,7 +92,7 @@ public class EntityRooster extends EntityChicken implements IInventory {
 		oFlap = wingRotation;
 		oFlapSpeed = destPos;
 		destPos = (float) ((double) destPos + (double) (onGround ? -1 : 4) * 0.3D);
-		destPos = MathHelper.clamp_float(destPos, 0.0F, 1.0F);
+		destPos = MathHelper.clamp(destPos, 0.0F, 1.0F);
 
 		if (!onGround && wingRotDelta < 1.0F)
 			wingRotDelta = 1.0F;
