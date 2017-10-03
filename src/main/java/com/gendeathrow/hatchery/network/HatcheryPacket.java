@@ -79,7 +79,7 @@ public class HatcheryPacket implements IMessage
 				return null;
 			}
 		
-			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.world;
+			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
 	          
 			mainThread.addScheduledTask(new Runnable() 
 				{
@@ -87,7 +87,7 @@ public class HatcheryPacket implements IMessage
 	                public void run() 
 					{
 
-						EntityPlayerMP sender = ctx.getServerHandler().playerEntity;
+						EntityPlayerMP sender = ctx.getServerHandler().player;
 						NBTTagCompound nbt = message.tags;
 						
 						if(message.requestID == 1) 
