@@ -14,9 +14,8 @@ import net.minecraft.item.ItemStack;
 
 public class EggNestTileEntityRender extends TileEntitySpecialRenderer<EggNestTileEntity>
 {
-	EntityItem renderitem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D, new ItemStack(Items.EGG));
-	
-		
+	EntityItem renderitem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D, new ItemStack(Items.EGG));
+
 	public void renderTileEntityAt(EggNestTileEntity te, double x, double y, double z, float partialTicks, int destroyStage)
     {
 		try

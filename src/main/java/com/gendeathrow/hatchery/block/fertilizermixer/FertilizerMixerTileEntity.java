@@ -169,7 +169,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
                 		flag1 = true;
                 		 if(this.inventory.getStackInSlot(0) != null)
                 		 {
-                			 --this.inventory.getStackInSlot(0).getCount();
+                			 --this.inventory.getStackInSlot(0).setCount();
                     		 
                              if (this.inventory.getStackInSlot(0).getCount() <= 0)
                              {
@@ -210,7 +210,7 @@ public class FertilizerMixerTileEntity extends TileUpgradable implements IInvent
 			}
 			else if(!this.isMixing() && this.mixTime > 0)
 			{
-				 this.mixTime = MathHelper.clamp_int(this.mixTime - 2, 0, this.totalMixTime);
+				 this.mixTime = MathHelper.clamp(this.mixTime - 2, 0, this.totalMixTime);
 			}
 			
 

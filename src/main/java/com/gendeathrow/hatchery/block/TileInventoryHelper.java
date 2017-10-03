@@ -46,8 +46,9 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 
 	@Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        if (inventory[index].getCount() > this.getInventoryStackLimit())
-			inventory[index].setCount(this.getInventoryStackLimit());
+        inventory[index] = stack;
+        if (stack.getCount() > this.getInventoryStackLimit())
+            stack.getCount() = this.getInventoryStackLimit();
         this.markDirty();
     }
 
@@ -103,23 +104,23 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
         return nbt;
     }
 
-	@Override
-	public void deserializeNBT(NBTTagCompound nbt)
-	{
-		setSize(nbt.hasKey("Size", Constants.NBT.TAG_INT) ? nbt.getInteger("Size") : inventory.length);
-		NBTTagList tagList = nbt.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		for (int i = 0; i < tagList.tagCount(); i++)
-		{
-			NBTTagCompound itemTags = tagList.getCompoundTagAt(i);
-			int slot = itemTags.getInteger("Slot");
+    @Override
+    public void deserializeNBT(NBTTagCompound nbt)
+    {
+        setSize(nbt.hasKey("Size", Constants.NBT.TAG_INT) ? nbt.getInteger("Size") : inventory.length);
+        NBTTagList tagList = nbt.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+        for (int i = 0; i < tagList.tagCount(); i++)
+        {
+            NBTTagCompound itemTags = tagList.getCompoundTagAt(i);
+            int slot = itemTags.getInteger("Slot");
 
-			if (slot >= 0 && slot < inventory.length)
-			{
-				inventory[slot] = new ItemStack(itemTags);
-			}
-		}
-		onLoad();
-	}
+            if (slot >= 0 && slot < inventory.length)
+            {
+            	inventory[slot] = ItemStack(itemTags);
+            }
+        }
+        onLoad();
+    }
 
     public void setSize(int size)
     {
@@ -167,6 +168,11 @@ public class TileInventoryHelper extends TileUpgradable implements ISidedInvento
 	public ITextComponent getDisplayName() {
 		return null;
 	}
+
+	public boolean canInsertItem() {
+		return true;
+	}
+
 
 	@Override
 	public ItemStack removeStackFromSlot(int index) {

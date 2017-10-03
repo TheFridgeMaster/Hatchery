@@ -324,7 +324,7 @@ public class EggNestTileEntity extends TileEntity implements ITickable//, IInven
 		
 		if (stack != null && stack.getCount() > this.getInventoryStackLimit())
         {
-            stack.getCount() = this.getInventoryStackLimit();
+            stack.setCount(this.getInventoryStackLimit());
         }
 		
 		this.markDirty();

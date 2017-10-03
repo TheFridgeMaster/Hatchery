@@ -290,7 +290,7 @@ public class FeederBlock extends Block implements ITileEntityProvider, TOPInfoPr
 		
         if(state.getValue(LEVEL).intValue() != level)
         {
-        	worldIn.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(LEVEL, Integer.valueOf(MathHelper.clamp_int(level, 0, 3))), 2);
+        	worldIn.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(LEVEL, Integer.valueOf(MathHelper.clamp(level, 0, 3))), 2);
         
         	if (tileentity != null)
         	{
